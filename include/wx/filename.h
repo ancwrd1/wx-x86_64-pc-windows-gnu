@@ -495,7 +495,7 @@ public:
     // is the char a path separator for this format?
     static bool IsPathSeparator(wxChar ch, wxPathFormat format = wxPATH_NATIVE);
 
-    // is this is a DOS path which beings with a windows unique volume name
+    // is this is a DOS path which begins with a windows unique volume name
     // ('\\?\Volume{guid}\')?
     static bool IsMSWUniqueVolumeNamePath(const wxString& path,
                                           wxPathFormat format = wxPATH_NATIVE);
@@ -626,7 +626,21 @@ private:
     // check whether this dir is valid for Append/Prepend/InsertDir()
     static bool IsValidDirComponent(const wxString& dir);
 
+    // flags used with DoSetPath()
+    enum
+    {
+        SetPath_PathOnly = 0,
+        SetPath_MayHaveVolume = 1
+    };
+
+    // helper of public SetPath() also used internally
+    void DoSetPath(const wxString& path, wxPathFormat format,
+                   int flags = SetPath_MayHaveVolume);
+
     // the drive/volume/device specification (always empty for Unix)
+    //
+    // for the drive letters, contains just the letter itself, but for MSW UNC
+    // and volume GUID paths, it starts with double backslash, e.g. "\\share"
     wxString        m_volume;
 
     // the path components of the file

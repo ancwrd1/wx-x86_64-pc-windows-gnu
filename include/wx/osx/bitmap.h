@@ -13,6 +13,8 @@
 
 #include "wx/palette.h"
 
+#define wxHAS_BITMAP_SCALE_FACTOR
+
 // Bitmap
 class WXDLLIMPEXP_FWD_CORE wxBitmap;
 class wxBitmapRefData ;
@@ -163,9 +165,6 @@ public:
     wxBitmapRefData *GetBitmapData()
         { return (wxBitmapRefData *)m_refData; }
 
-    // copies the contents and mask of the given (colour) icon to the bitmap
-    virtual bool CopyFromIcon(const wxIcon& icon) wxOVERRIDE;
-
     int GetWidth() const wxOVERRIDE;
     int GetHeight() const wxOVERRIDE;
     int GetDepth() const wxOVERRIDE;
@@ -239,6 +238,7 @@ public:
     void EndRawAccess();
 #endif
 
+    void SetScaleFactor(double scale) wxOVERRIDE;
     double GetScaleFactor() const wxOVERRIDE;
 
     void SetSelectedInto(wxDC *dc);

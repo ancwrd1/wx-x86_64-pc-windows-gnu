@@ -502,7 +502,7 @@
 // Recommended setting: 1
 #define wxUSE_TIMER         1
 
-// Use wxStopWatch clas.
+// Use wxStopWatch class.
 //
 // Default is 1
 //
@@ -1054,7 +1054,7 @@
 // Default is 1.
 //
 // Recommended setting: 1 but can be safely set to 0 except for wxUniv where it
-//                      it used by wxComboBox
+//                      is used by wxComboBox
 #define wxUSE_COMBOCTRL 1
 
 // wxOwnerDrawnComboBox is a custom combobox allowing to paint the combobox

@@ -23,6 +23,8 @@
 // shared between Cocoa and Carbon
 //
 
+#include "wx/bmpbndl.h"
+
 // bring in theming types without pulling in the headers
 
 #if wxUSE_GUI
@@ -42,7 +44,7 @@ WX_NSImage WXDLLIMPEXP_CORE wxOSXGetNSImageFromIconRef( WXHICON iconref );
 WX_NSImage WXDLLIMPEXP_CORE wxOSXGetNSImageFromCFURL( CFURLRef urlref );
 WX_NSImage WXDLLIMPEXP_CORE wxOSXGetIconForType(OSType type );
 void WXDLLIMPEXP_CORE wxOSXSetImageSize(WX_NSImage image, CGFloat width, CGFloat height);
-wxBitmap WXDLLIMPEXP_CORE wxOSXCreateSystemBitmap(const wxString& id, const wxString &client, const wxSize& size);
+wxBitmapBundle WXDLLIMPEXP_CORE wxOSXCreateSystemBitmapBundle(const wxString& id, const wxString &client, const wxSize& size);
 WXWindow WXDLLIMPEXP_CORE wxOSXGetMainWindow();
 WXWindow WXDLLIMPEXP_CORE wxOSXGetKeyWindow();
 WXImage WXDLLIMPEXP_CORE wxOSXGetNSImageFromNSCursor(const WXHCURSOR cursor);
@@ -138,7 +140,7 @@ public :
     wxInt32             GetValue() const wxOVERRIDE;
     void                SetValue( wxInt32 v ) wxOVERRIDE;
     wxBitmap            GetBitmap() const wxOVERRIDE;
-    void                SetBitmap( const wxBitmap& bitmap ) wxOVERRIDE;
+    void                SetBitmap( const wxBitmapBundle& bitmap ) wxOVERRIDE;
     void                SetBitmapPosition( wxDirection dir ) wxOVERRIDE;
     void                SetupTabs( const wxNotebook &notebook ) wxOVERRIDE;
     void                GetBestRect( wxRect *r ) const wxOVERRIDE;
@@ -354,12 +356,12 @@ class wxButtonCocoaImpl : public wxWidgetCocoaImpl, public wxButtonImpl
 {
 public:
     wxButtonCocoaImpl(wxWindowMac *wxpeer, wxNSButton *v);
-    virtual void SetBitmap(const wxBitmap& bitmap) wxOVERRIDE;
+    virtual void SetBitmap(const wxBitmapBundle& bitmap) wxOVERRIDE;
 #if wxUSE_MARKUP
     virtual void SetLabelMarkup(const wxString& markup) wxOVERRIDE;
 #endif // wxUSE_MARKUP
 
-    void SetPressedBitmap( const wxBitmap& bitmap ) wxOVERRIDE;
+    void SetPressedBitmap( const wxBitmapBundle& bitmap ) wxOVERRIDE;
     void GetLayoutInset(int &left, int &top, int &right, int &bottom) const wxOVERRIDE;
     void SetAcceleratorFromLabel(const wxString& label);
 

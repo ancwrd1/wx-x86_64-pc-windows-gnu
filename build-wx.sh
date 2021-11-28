@@ -33,16 +33,37 @@ cmake -DCMAKE_INSTALL_PREFIX=$target/target \
       -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
       -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ \
       -DCMAKE_BUILD_TYPE=Release \
-      -DwxBUILD_MONOLITHIC=ON \
-      -DwxUSE_STL=ON \
-      -DwxUSE_WEBVIEW=ON \
-      -DwxUSE_WEBVIEW_EDGE=ON \
       -DwxBUILD_VENDOR=eop \
       -DwxBUILD_COMPATIBILITY=3.1 \
+      -DwxBUILD_MONOLITHIC=ON \
       -DwxBUILD_USE_STATIC_RUNTIME=ON \
       -DwxBUILD_OPTIMISE=ON \
       -DwxBUILD_SHARED=OFF \
+      -DwxBUILD_DEBUG_LEVEL=0 \
+      -DwxUSE_STL=ON \
+      -DwxUSE_WEBVIEW=ON \
+      -DwxUSE_WEBVIEW_EDGE=ON \
+      -DwxUSE_HTML=ON \
       -DwxUSE_LIBMSPACK=OFF \
+      -DwxUSE_LOG=OFF \
+      -DwxUSE_LOGGUI=OFF \
+      -DwxUSE_LOGWINDOW=OFF \
+      -DwxUSE_LOG_DIALOG=OFF \
+      -DwxUSE_DOC_VIEW_ARCHITECTURE=OFF \
+      -DwxUSE_HELP=OFF \
+      -DwxUSE_MS_HTML_HELP=OFF \
+      -DwxUSE_WXHTML_HELP=OFF \
+      -DwxUSE_AUI=OFF \
+      -DwxUSE_PROPGRID=OFF \
+      -DwxUSE_RIBBON=OFF \
+      -DwxUSE_STC=OFF \
+      -DwxUSE_MDI=OFF \
+      -DwxUSE_MDI_ARCHITECTURE=OFF \
+      -DwxUSE_MEDIACTRL=OFF \
+      -DwxUSE_RICHTEXT=OFF \
+      -DwxUSE_POSTSCRIPT=OFF \
+      -DwxUSE_AFM_FOR_POSTSCRIPT=OFF \
+      -DwxUSE_PRINTING_ARCHITECTURE=OFF \
       -G Ninja \
       ../wxWidgets 2>>$buildlog >>$buildlog
 
@@ -53,6 +74,11 @@ fi
 
 echo "Building wxWidgets for mingw64"
 ninja install 2>>$buildlog >>$buildlog
+
+if [[ "$?" != "0" ]]; then
+    echo "FATAL: error while running ninja, check $buildlog"
+    exit 1
+fi
 
 echo "Replacing headers and libraries"
 rm -rf $basedir/include

@@ -169,13 +169,13 @@
 
 #define wxUSE_EXTENDED_RTTI 0
 
-#define wxUSE_LOG 1
+#define wxUSE_LOG 0
 
-#define wxUSE_LOGWINDOW 1
+#define wxUSE_LOGWINDOW 0
 
-#define wxUSE_LOGGUI 1
+#define wxUSE_LOGGUI 0
 
-#define wxUSE_LOG_DIALOG 1
+#define wxUSE_LOG_DIALOG 0
 
 #define wxUSE_CMDLINE_PARSER 1
 
@@ -216,7 +216,7 @@
 
 #define wxUSE_SECRETSTORE 1
 
-#define wxUSE_SPELLCHECK 0
+#define wxUSE_SPELLCHECK 1
 
 #define wxUSE_STDPATHS 1
 
@@ -308,19 +308,19 @@
 
 #define wxUSE_SOUND 1
 
-#define wxUSE_MEDIACTRL 1
+#define wxUSE_MEDIACTRL 0
 
 #define wxUSE_XRC 1
 
 #define wxUSE_XML 1
 
-#define wxUSE_AUI 1
+#define wxUSE_AUI 0
 
-#define wxUSE_RIBBON 1
+#define wxUSE_RIBBON 0
 
-#define wxUSE_PROPGRID 1
+#define wxUSE_PROPGRID 0
 
-#define wxUSE_STC 1
+#define wxUSE_STC 0
 
 #define wxUSE_WEBVIEW 1
 
@@ -533,13 +533,13 @@
 #define wxUSE_WIN_METAFILES_ALWAYS 0
 
 
-#define wxUSE_MDI 1
+#define wxUSE_MDI 0
 
-#define wxUSE_DOC_VIEW_ARCHITECTURE 1
+#define wxUSE_DOC_VIEW_ARCHITECTURE 0
 
-#define wxUSE_MDI_ARCHITECTURE 1
+#define wxUSE_MDI_ARCHITECTURE 0
 
-#define wxUSE_PRINTING_ARCHITECTURE 1
+#define wxUSE_PRINTING_ARCHITECTURE 0
 
 #define wxUSE_HTML 1
 
@@ -547,7 +547,7 @@
 
 #define wxUSE_GLCANVAS_EGL 0
 
-#define wxUSE_RICHTEXT 1
+#define wxUSE_RICHTEXT 0
 
 
 #define wxUSE_CLIPBOARD 1
@@ -569,13 +569,13 @@
 
 #define wxUSE_IPC 1
 
-#define wxUSE_HELP 1
+#define wxUSE_HELP 0
 
 
-#define wxUSE_MS_HTML_HELP 1
+#define wxUSE_MS_HTML_HELP 0
 
 
-#define wxUSE_WXHTML_HELP 1
+#define wxUSE_WXHTML_HELP 0
 
 #define wxUSE_CONSTRAINTS 1
 
@@ -589,9 +589,9 @@
 #define wxUSE_UIACTIONSIMULATOR 1
 
 
-#define wxUSE_POSTSCRIPT 1
+#define wxUSE_POSTSCRIPT 0
 
-#define wxUSE_AFM_FOR_POSTSCRIPT 1
+#define wxUSE_AFM_FOR_POSTSCRIPT 0
 
 #define wxUSE_SVG 1
 
