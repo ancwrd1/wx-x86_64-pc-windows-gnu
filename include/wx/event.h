@@ -145,7 +145,7 @@ inline wxEventFunction wxEventFunctionCast(void (wxEvtHandler::*func)(T&))
 // a type of wxEvtHandler method. But with C++17 this doesn't work when the
 // handler is a noexcept function, so we need to cast it to a noexcept function
 // pointer first.
-#if __cplusplus >= 201703L
+#if wxCHECK_CXX_STD(201703L)
 
 namespace wxPrivate
 {
@@ -4078,6 +4078,10 @@ protected:
 
     // Search tracker objects for event connection with this sink
     wxEventConnectionRef *FindRefInTrackerList(wxEvtHandler *handler);
+
+    // Stub virtual functions for forward binary compatibility. DO NOT USE.
+    virtual void* WXReservedEvtHandler1(void*);
+    virtual void* WXReservedEvtHandler2(void*);
 
 private:
     // pass the event to wxTheApp instance, called from TryAfter()

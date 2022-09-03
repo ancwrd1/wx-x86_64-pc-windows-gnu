@@ -22,10 +22,12 @@
 
 class WXDLLIMPEXP_FWD_CORE wxBitmap;
 class WXDLLIMPEXP_FWD_CORE wxBitmapHandler;
+class WXDLLIMPEXP_FWD_CORE wxCursor;
+class WXDLLIMPEXP_FWD_CORE wxDC;
 class WXDLLIMPEXP_FWD_CORE wxIcon;
 class WXDLLIMPEXP_FWD_CORE wxMask;
 class WXDLLIMPEXP_FWD_CORE wxPalette;
-class WXDLLIMPEXP_FWD_CORE wxDC;
+class WXDLLIMPEXP_FWD_CORE wxPixelDataBase;
 
 // ----------------------------------------------------------------------------
 // wxVariant support
@@ -247,6 +249,12 @@ public:
     virtual wxPalette *GetPalette() const = 0;
     virtual void SetPalette(const wxPalette& palette) = 0;
 #endif // wxUSE_PALETTE
+
+    // Alpha support for 32bpp bitmaps: check if it's used, request that it be
+    // used or not.
+    virtual bool HasAlpha() const;
+    virtual bool UseAlpha(bool use = true);
+    void ResetAlpha() { UseAlpha(false); }
 
     // copies the contents and mask of the given (colour) icon to the bitmap
     bool CopyFromIcon(const wxIcon& icon);

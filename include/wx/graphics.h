@@ -68,7 +68,8 @@ enum wxCompositionMode
     wxCOMPOSITION_XOR, /* R = S*(1 - Da) + D*(1 - Sa) */
 
     // mathematical compositions
-    wxCOMPOSITION_ADD /* R = S + D */
+    wxCOMPOSITION_ADD, /* R = S + D */
+    wxCOMPOSITION_DIFF /* R = abs(S - D) */
 };
 
 enum wxGradientType
@@ -738,6 +739,28 @@ public:
 
     // returns the resolution of the graphics context in device points per inch
     virtual void GetDPI( wxDouble* dpiX, wxDouble* dpiY) const;
+
+    wxSize FromDIP(const wxSize& sz) const;
+    wxPoint FromDIP(const wxPoint& pt) const
+    {
+        const wxSize sz = FromDIP(wxSize(pt.x, pt.y));
+        return wxPoint(sz.x, sz.y);
+    }
+    int FromDIP(int d) const
+    {
+        return FromDIP(wxSize(d, 0)).x;
+    }
+
+    wxSize ToDIP(const wxSize& sz) const;
+    wxPoint ToDIP(const wxPoint& pt) const
+    {
+        const wxSize sz = ToDIP(wxSize(pt.x, pt.y));
+        return wxPoint(sz.x, sz.y);
+    }
+    int ToDIP(int d) const
+    {
+        return ToDIP(wxSize(d, 0)).x;
+    }
 
 #if 0
     // sets the current alpha on this context

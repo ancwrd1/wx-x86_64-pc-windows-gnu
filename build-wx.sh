@@ -12,16 +12,15 @@ rm -f $buildlog
 
 if [[ ! -e "$target/wxWidgets/.git" ]]; then
     echo "Cloning wxWidgets repository"
-    git clone --recurse-submodules https://github.com/wxWidgets/wxWidgets.git 2>>$buildlog >>$buildlog
+    git clone --recurse-submodules --depth 1 --branch $gitref https://github.com/wxWidgets/wxWidgets.git 2>>$buildlog >>$buildlog
     if [[ "$?" != "0" ]]; then
     echo "FATAL: error while running git clone, check $buildlog"
         exit 1
     fi
 fi
 
-echo "Checking out $gitref"
-git -C wxWidgets checkout $gitref 2>>$buildlog >>$buildlog
-git -C wxWidgets submodule update --recursive 2>>$buildlog >>$buildlog
+echo "Patching wxWidgets"
+sed -i 's/if(wxUSE_XRC)/if(FALSE)/g' wxWidgets/build/cmake/utils/CMakeLists.txt
 
 mkdir -p mingw64
 cd mingw64
@@ -33,7 +32,6 @@ cmake -DCMAKE_INSTALL_PREFIX=$target/target \
       -DCMAKE_C_COMPILER=x86_64-w64-mingw32-gcc \
       -DCMAKE_CXX_COMPILER=x86_64-w64-mingw32-g++ \
       -DCMAKE_BUILD_TYPE=Release \
-      -DwxBUILD_VENDOR=eop \
       -DwxBUILD_COMPATIBILITY=3.1 \
       -DwxBUILD_MONOLITHIC=ON \
       -DwxBUILD_USE_STATIC_RUNTIME=ON \

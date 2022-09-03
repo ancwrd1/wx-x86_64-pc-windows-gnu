@@ -609,6 +609,10 @@
 
 #define wxUSE_LIBTIFF 1
 
+#define wxUSE_NANOSVG 1
+
+#define wxUSE_NANOSVG_EXTERNAL 0
+
 #define wxUSE_TGA 1
 
 #define wxUSE_GIF 1
@@ -980,9 +984,6 @@
 /* Define if you have snprintf() */
 #define HAVE_SNPRINTF 1
 
-/* Define if you have snprintf() declaration in the header */
-/* #undef HAVE_SNPRINTF_DECL */
-
 /* Define if you have a snprintf() which supports positional arguments
    (defined in the unix98 standard) */
 /* #undef HAVE_UNIX98_PRINTF */
@@ -1005,9 +1006,6 @@
 /* Define if you have vsnprintf() */
 #define HAVE_VSNPRINTF 1
 
-/* Define if you have vsnprintf() declaration in the header */
-/* #undef HAVE_VSNPRINTF_DECL */
-
 /* Define if you have a _broken_ vsnprintf() declaration in the header,
  * with 'char*' for the 3rd parameter instead of 'const char*' */
 /* #undef HAVE_BROKEN_VSNPRINTF_DECL */
@@ -1018,9 +1016,6 @@
 
 /* Define if you have vsscanf() */
 /* #undef HAVE_VSSCANF */
-
-/* Define if you have vsscanf() declaration in the header */
-/* #undef HAVE_VSSCANF_DECL */
 
 /* Define if you have usleep() */
 /* #undef HAVE_USLEEP */

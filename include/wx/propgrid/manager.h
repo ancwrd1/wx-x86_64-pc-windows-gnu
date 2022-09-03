@@ -398,9 +398,6 @@ public:
     // based, this function checks every page in the manager.
     virtual bool IsPropertySelected( wxPGPropArg id ) const;
 
-    virtual void Refresh( bool eraseBackground = true,
-                          const wxRect* rect = (const wxRect*) NULL ) wxOVERRIDE;
-
     // Removes a page.
     // Returns false if it was not possible to remove page in question.
     virtual bool RemovePage( int page );
@@ -518,9 +515,6 @@ public:
 protected:
     virtual wxSize DoGetBestSize() const wxOVERRIDE;
 
-    virtual void DoFreeze() wxOVERRIDE;
-    virtual void DoThaw() wxOVERRIDE;
-
     //
     // Event handlers
     //
@@ -633,9 +627,7 @@ private:
 
 inline int wxPropertyGridPage::GetIndex() const
 {
-    if ( !m_manager )
-        return wxNOT_FOUND;
-    return m_manager->GetPageByState(this);
+    return m_manager ? m_manager->GetPageByState(this) : wxNOT_FOUND;
 }
 
 // -----------------------------------------------------------------------

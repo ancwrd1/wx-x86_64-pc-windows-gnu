@@ -78,7 +78,6 @@ public:
     virtual int GetDepth() const wxOVERRIDE;
     virtual wxSize GetPPI() const wxOVERRIDE;
 
-
     virtual void SetMapMode(wxMappingMode mode) wxOVERRIDE;
     virtual void SetUserScale(double x, double y) wxOVERRIDE;
     virtual void SetLogicalScale(double x, double y) wxOVERRIDE;

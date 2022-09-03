@@ -6,7 +6,7 @@ const FLAGS: &[&str] = &[
     "-D__WXMSW__",
     "-DwxDEBUG_LEVEL=0",
     "-L@ROOT@/lib",
-    "-lwxmsw31u",
+    "-lwxmsw32u",
     "-lkernel32",
     "-luser32",
     "-lgdi32",

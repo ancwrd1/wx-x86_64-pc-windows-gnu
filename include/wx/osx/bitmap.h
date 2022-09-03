@@ -14,15 +14,7 @@
 #include "wx/palette.h"
 
 // Bitmap
-class WXDLLIMPEXP_FWD_CORE wxBitmap;
 class wxBitmapRefData ;
-class WXDLLIMPEXP_FWD_CORE wxBitmapHandler;
-class WXDLLIMPEXP_FWD_CORE wxControl;
-class WXDLLIMPEXP_FWD_CORE wxCursor;
-class WXDLLIMPEXP_FWD_CORE wxDC;
-class WXDLLIMPEXP_FWD_CORE wxIcon;
-class WXDLLIMPEXP_FWD_CORE wxImage;
-class WXDLLIMPEXP_FWD_CORE wxPixelDataBase;
 
 // A mask is a bitmap used for drawing bitmaps
 // Internally it is stored as a 8 bit deep memory chunk, 0 = black means the source will be drawn
@@ -122,6 +114,7 @@ public:
 
     // Convert from wxImage:
     wxBitmap(const wxImage& image, int depth = -1, double scale = 1.0);
+    wxBitmap(const wxImage& image, const wxDC& dc);
 
     // Convert from wxIcon
     wxBitmap(const wxIcon& icon) { CopyFromIcon(icon); }
@@ -187,10 +180,8 @@ public:
     void *GetRawData(wxPixelDataBase& data, int bpp);
     void UngetRawData(wxPixelDataBase& data);
 
-    // these functions are internal and shouldn't be used, they risk to
-    // disappear in the future
-    bool HasAlpha() const;
-    void UseAlpha(bool use = true);
+    bool HasAlpha() const wxOVERRIDE;
+    bool UseAlpha(bool use = true) wxOVERRIDE;
 
     // returns the 'native' implementation, a GWorldPtr for the content and one for the mask
     WXHBITMAP GetHBITMAP( WXHBITMAP * mask = NULL ) const;
@@ -244,6 +235,9 @@ protected:
     virtual wxGDIRefData *CloneGDIRefData(const wxGDIRefData *data) const wxOVERRIDE;
 
     virtual bool DoCreate(const wxSize& sz, double scale, int depth) wxOVERRIDE;
+
+private:
+    void InitFromImage(const wxImage& image, int depth, double scale);
 };
 
 #endif // _WX_BITMAP_H_

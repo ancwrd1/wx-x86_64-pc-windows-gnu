@@ -111,7 +111,7 @@ public :
     virtual void        GetPosition( int &x, int &y ) const wxOVERRIDE;
     virtual void        GetSize( int &width, int &height ) const wxOVERRIDE;
     virtual void        SetControlSize( wxWindowVariant variant ) wxOVERRIDE;
-
+    virtual void        GetLayoutInset(int &left , int &top , int &right, int &bottom) const wxOVERRIDE;
     virtual void        SetNeedsDisplay( const wxRect* where = NULL ) wxOVERRIDE;
     virtual bool        GetNeedsDisplay() const wxOVERRIDE;
 
@@ -368,7 +368,6 @@ public:
 #endif // wxUSE_MARKUP
 
     void SetPressedBitmap( const wxBitmapBundle& bitmap ) wxOVERRIDE;
-    void GetLayoutInset(int &left, int &top, int &right, int &bottom) const wxOVERRIDE;
     void SetAcceleratorFromLabel(const wxString& label);
 
     NSButton *GetNSButton() const;
@@ -380,6 +379,7 @@ public:
     typedef void (*wxOSX_TextEventHandlerPtr)(NSView* self, SEL _cmd, NSString *event);
     typedef void (*wxOSX_EventHandlerPtr)(NSView* self, SEL _cmd, NSEvent *event);
     typedef BOOL (*wxOSX_PerformKeyEventHandlerPtr)(NSView* self, SEL _cmd, NSEvent *event);
+    typedef void (*wxOSX_DoCommandBySelectorPtr)(NSView* self, SEL _cmd, SEL _sel);
     typedef BOOL (*wxOSX_FocusHandlerPtr)(NSView* self, SEL _cmd);
     typedef void (*wxOSX_DoCommandBySelectorPtr)(NSView* self, SEL _cmd, SEL _sel);
     typedef NSDragOperation (*wxOSX_DraggingEnteredOrUpdatedHandlerPtr)(NSView *self, SEL _cmd, void *sender);
@@ -512,21 +512,7 @@ public:
     - (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo;
     @end
 
-    // This interface must be exported in shared 64 bit multilib build but
-    // using WXEXPORT with Objective C interfaces doesn't work with old (4.0.1)
-    // gcc when using 10.4 SDK. It does work with newer gcc even in 32 bit
-    // builds but seems to be unnecessary there so to avoid the expense of a
-    // configure check verifying if this does work or not with the current
-    // compiler we just only use it for 64 bit builds where this is always
-    // supported.
-    //
-    // NB: Currently this is the only place where we need to export an
-    //     interface but if we need to do it elsewhere we should define a
-    //     WXEXPORT_OBJC macro once and reuse it in all places it's needed
-    //     instead of duplicating this preprocessor check.
-#ifdef __LP64__
     WXEXPORT
-#endif // 64 bit builds
     @interface wxNSAppController : NSObject <NSApplicationDelegate>
     {
     }
